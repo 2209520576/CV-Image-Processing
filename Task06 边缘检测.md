@@ -33,11 +33,11 @@
 
 
 
-​	我们可以使用$3 \times 3$ 的卷积核来进行图像求导：
+我们可以使用$3 \times 3$ 的卷积核来进行图像求导：
 $$
 {\displaystyle \mathbf {G}'_{y}={\begin{bmatrix}+1&+2&+1\\0&0&0\\-1&-2&-1\end{bmatrix}}*\mathbf {I} \quad {\mbox{和}}\quad \mathbf {G}'_{x}={\begin{bmatrix}+1&0&-1\\+2&0&-2\\+1&0&-1\end{bmatrix}}*\mathbf {I} }
 $$
-​	其中$\mathbf {I}$表示原图片，$\mathbf {G}'_{x}$和$\mathbf {G}'_{y}$分别表示沿图片水平和竖直方向上的变化，$*$表示卷积操作
+其中$\mathbf {I}$表示原图片，$\mathbf {G}'_{x}$和$\mathbf {G}'_{y}$分别表示沿图片水平和竖直方向上的变化，$*$表示卷积操作
 
 【例1】下面以Sobel算子为例讲述如何计算梯度
 
