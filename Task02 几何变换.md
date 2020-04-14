@@ -31,7 +31,7 @@
 ## 2.4 算法理论介绍
 ### 变换形式
 先看第一个问题，变换的形式。与OpencV不同的是这里采取冈萨雷斯的《数字图像处理_第三版》的变换矩阵方式，关于OpenCV的策略可以看它的官方文档。根据冈萨雷斯书中的描述，仿射变换的一般形式如下：
- [Image](https://img-blog.csdnimg.cn/20200413000257295.png)
+ ![Image](https://img-blog.csdnimg.cn/20200413000257295.png)
 式中的T就是变换矩阵，其中 (v,w)为原坐标，(x,y) 为变换后的坐标，不同的变换对应不同的矩阵，这里也贴出来吧，一些常见的变换矩阵及作用如下表：
 
 ![Image](https://img-blog.csdnimg.cn/20200413000334168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
