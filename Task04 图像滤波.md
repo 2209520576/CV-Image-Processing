@@ -121,8 +121,10 @@ void generateGaussMask(cv::Mat& Mask,cv::Size wsize, double sigma){
 	Mask = Mask / sum;
 }
 ```
-**3×3,σ=0.8的小数型模板：**
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412165756162.png)
+**3×3,σ=0.8的小数型模板：**  
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412165756162.png)  
+
 **σ的意义及选取**
 通过上述的实现过程，不难发现，高斯滤波器模板的生成最重要的参数就是高斯分布的标准差σ。标准差代表着数据的离散程度，如果σ较小，那么生成的模板的中心系数较大，而周围的系数较小，这样对图像的平滑效果就不是很明显；反之，σ较大，则生成的模板的各个系数相差就不是很大，比较类似均值模板，对图像的平滑效果比较明显。
 
@@ -465,10 +467,10 @@ void GaussianFilter(cv::Mat& src, cv::Mat& dst, cv::Mat window){
    
    
 ###  相关技术文档、博客、教材、项目推荐
-opencv文档: [https://docs.opencv.org/3.1.0/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37](https://docs.opencv.org/3.1.0/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37)  
-博客：[https://blog.csdn.net/weixin_40647819/article/details/89740234](https://blog.csdn.net/weixin_40647819/article/details/89740234)
-           [https://blog.csdn.net/weixin_40647819/article/details/88774522](https://blog.csdn.net/weixin_40647819/article/details/88774522) 
-python版本：[https://www.kancloud.cn/aollo/aolloopencv/269599](https://blog.csdn.net/weixin_40647819/article/details/88774522)                    [http://www.woshicver.com/FifthSection/4_4_%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91/ ](http://www.woshicver.com/FifthSection/4_4_%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91/ )
+opencv文档: [https://docs.opencv.org/3.1.0/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37](https://docs.opencv.org/3.1.0/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37)    
+博客：[https://blog.csdn.net/weixin_40647819/article/details/89740234](https://blog.csdn.net/weixin_40647819/article/details/89740234)  
+           [https://blog.csdn.net/weixin_40647819/article/details/88774522](https://blog.csdn.net/weixin_40647819/article/details/88774522)     
+python版本：[https://www.kancloud.cn/aollo/aolloopencv/269599](https://blog.csdn.net/weixin_40647819/article/details/88774522)                    [http://www.woshicver.com/FifthSection/4_4_%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91/ ] (http://www.woshicver.com/FifthSection/4_4_%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91/ )  
 
   
 ## 4.6 总结 
