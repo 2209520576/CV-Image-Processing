@@ -10,7 +10,7 @@
 
 为了检测边缘，我们需要检测图像中的**不连续性**，可以使用**导数**来检测不连续性。
 
-![](IMG/edge1.jpg)
+![](https://github.com/2209520576/CV-Image-Processing/raw/master/Task06%20%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/IMG/edge1.jpg)
 
 如上图所示，上图的第一幅图表示一张数字图片，我们对水平红线处进行求导，便可得到上图二中的关系，可以看到在边缘处有着较大的跳变。但是，导数也会受到噪声的影响，因此建议在求导数之前先对图像进行平滑处理（上图三）。
 
@@ -113,7 +113,7 @@ $$
 
 比如计算出的$\theta=91 $度,则应将其归类到90--270度方向
 
-<img src="IMG/angle.png" style="zoom:50%;" />
+![](https://github.com/2209520576/CV-Image-Processing/raw/master/Task06%20%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/IMG/angle.png)
 
 #### 3.非极大值抑制(NMS)
 
@@ -125,7 +125,7 @@ $$
 
 一张图解释双阈值算法检测：
 
-<img src="IMG/doubleThreshold.png" style="zoom: 50%;" />
+![](https://github.com/2209520576/CV-Image-Processing/raw/master/Task06%20%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/IMG/doubleThreshold.png)
 
 双阈值法非常简单，我们假设两类边缘：经过非极大值抑制之后的边缘点中，**梯度值超过TH的称为强边缘，梯度值小于TH大于TL的称为弱边缘，梯度小于TL的不是边缘**。
 
@@ -176,7 +176,7 @@ plt.show()
 
 结果：
 
-![](IMG/sobel_result.png)
+![](https://github.com/2209520576/CV-Image-Processing/raw/master/Task06%20%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/IMG/sobel_result.png)
 
 #### 6.5.2 Canny算法
 
@@ -215,7 +215,7 @@ plt.show()
 
 结果：
 
-![](IMG/canny_result.png)
+![](https://github.com/2209520576/CV-Image-Processing/raw/master/Task06%20%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/IMG/canny_result.png)
 
 ## 6.6 总结
 
