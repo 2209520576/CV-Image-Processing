@@ -301,10 +301,10 @@ int main(){
 ```
 ### 效果
 
- ![](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2gray.png)
+ ![Image](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2gray.png)
  
  
- ![](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2HSV.png)
+ ![Image](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2HSV.png)
   
   ---
 ### 相关技术文档、博客、书籍、项目推荐
