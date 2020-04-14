@@ -311,7 +311,7 @@ opencv文档: [https://docs.opencv.org/3.1.0/da/d54/group__imgproc__transform.ht
 博客：[https://blog.csdn.net/weixin_40647819/article/details/87912122](https://blog.csdn.net/weixin_40647819/article/details/87912122)  
            [https://www.jianshu.com/p/18cd12e776e1](https://www.jianshu.com/p/18cd12e776e1)   
            [https://blog.csdn.net/whuhan2013/article/details/53814026](https://blog.csdn.net/whuhan2013/article/details/53814026)  
-python版本：[https://blog.csdn.net/g11d111/article/details/79978582](https://blog.csdn.net/g11d111/article/details/79978582  
+python版本：[https://blog.csdn.net/g11d111/article/details/79978582](https://blog.csdn.net/g11d111/article/details/79978582)    
 [https://www.kancloud.cn/aollo/aolloopencv/264331](https://www.kancloud.cn/aollo/aolloopencv/264331)                      [http://www.woshicver.com/FifthSection/4_2_%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/](http://www.woshicver.com/FifthSection/4_2_%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/ )  
 
 ## 2.6 总结
