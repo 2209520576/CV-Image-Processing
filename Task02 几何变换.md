@@ -30,19 +30,23 @@
 
 ## 2.4 算法理论介绍
 ### 变换形式
-先看第一个问题，变换的形式。与OpencV不同的是这里采取冈萨雷斯的《数字图像处理_第三版》的变换矩阵方式，关于OpenCV的策略可以看它的官方文档。根据冈萨雷斯书中的描述，仿射变换的一般形式如下：
- ![Image](https://img-blog.csdnimg.cn/20200413000257295.png)
-式中的T就是变换矩阵，其中 (v,w)为原坐标，(x,y) 为变换后的坐标，不同的变换对应不同的矩阵，这里也贴出来吧，一些常见的变换矩阵及作用如下表：
+先看第一个问题，变换的形式。与OpencV不同的是这里采取冈萨雷斯的《数字图像处理_第三版》的变换矩阵方式，关于OpenCV的策略可以看它的官方文档。根据冈萨雷斯书中的描述，仿射变换的一般形式如下：  
+ ![Image](https://img-blog.csdnimg.cn/20200413000257295.png)  
+ 
+式中的T就是变换矩阵，其中 (v,w)为原坐标，(x,y) 为变换后的坐标，不同的变换对应不同的矩阵，这里也贴出来吧，一些常见的变换矩阵及作用如下表：  
 
-![Image](https://img-blog.csdnimg.cn/20200413000334168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
+![Image](https://img-blog.csdnimg.cn/20200413000334168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70) 
+
 也就是说，我们根据自己的目的选择不同变换矩阵就可以了。
 
 ### 坐标系变换
 再看第二个问题，变换中心，对于缩放、平移可以以图像坐标原点（图像左上角为原点）为中心变换，这不用坐标系变换，直接按照一般形式计算即可。而对于旋转和偏移，一般是以图像中心为原点，那么这就涉及坐标系转换了。
 
-我们都知道，图像坐标的原点在图像左上角，水平向右为 X 轴，垂直向下为 Y 轴。数学课本中常见的坐标系是以图像中心为原点，水平向右为 X 轴，垂直向上为 Y 轴，称为笛卡尔坐标系。看下图:
+我们都知道，图像坐标的原点在图像左上角，水平向右为 X 轴，垂直向下为 Y 轴。数学课本中常见的坐标系是以图像中心为原点，水平向右为 X 轴，垂直向上为 Y 轴，称为笛卡尔坐标系。看下图:  
 
-   ![Image](https://img-blog.csdnimg.cn/20200413000533449.png)
+
+   ![Image](https://img-blog.csdnimg.cn/20200413000533449.png)  
+   
 因此，对于旋转和偏移，就需要3步（3次变换）：
 
 * 将输入原图图像坐标转换为笛卡尔坐标系；
@@ -50,24 +54,34 @@
 * 将旋转后的图像的笛卡尔坐标转回图像坐标。
 ### 图像坐标系与笛卡尔坐标系转换关系：
 
-先看下图：
-![Image](https://img-blog.csdnimg.cn/20200413002920287.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
+先看下图：  
+
+
+![Image](https://img-blog.csdnimg.cn/20200413002920287.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)  
+
 
 在图像中我们的坐标系通常是AB和AC方向的,原点为A，而笛卡尔直角坐标系是DE和DF方向的，原点为D。
-**令图像表示为M×N的矩阵，对于点A而言，两坐标系中的坐标分别是(0，0)和(-N/2,M/2)，则图像某像素点(x',y')转换为笛卡尔坐标（x,y）转换关系为，x为列，y为行：** 
+**令图像表示为M×N的矩阵，对于点A而言，两坐标系中的坐标分别是(0，0)和(-N/2,M/2)，则图像某像素点(x',y')转换为笛卡尔坐标（x,y）转换关系为，x为列，y为行：**   
 
-![Image](https://img-blog.csdnimg.cn/20200413004600511.png)
-逆变换为：
-![Image](https://img-blog.csdnimg.cn/2020041300453767.png)
-于是，根据前面说的3个步骤（3次变换），旋转(顺时针旋转)的变换形式就为，3次变换就有3个矩阵：
-![Image](https://img-blog.csdnimg.cn/20200413005411233.png)
 
-### 反向映射
+![Image](https://img-blog.csdnimg.cn/20200413004600511.png)  
+
+逆变换为：  
+
+![Image](https://img-blog.csdnimg.cn/2020041300453767.png)  
+
+于是，根据前面说的3个步骤（3次变换），旋转(顺时针旋转)的变换形式就为，3次变换就有3个矩阵：  
+
+![Image](https://img-blog.csdnimg.cn/20200413005411233.png)  
+
+
+
+### 反向映射  
 看第3个问题，在冈萨雷斯的《数字图像处理_第三版》中说的很清楚，前向映射就是根据原图用变换公式直接算出输出图像相应像素的空间位置，那么这会导致一个问题：可能会有多个像素坐标映射到输出图像的同一位置，也可能输出图像的某些位置完全没有相应的输入图像像素与它匹配，也就是没有被映射到，造成有规律的空洞（黑色的蜂窝状）。更好的一种方式是采用 反向映射（Inverse Mapping）：扫描输出图像的位置(x,y)，通过
 ![Image](https://img-blog.csdnimg.cn/20200413005247477.png)
 （为T的逆矩阵）计算输入图像对应的位置 (v,w)，通过插值方法决定输出图像该位置的灰度值。
 
-### 插值
+###  插值
 第4个问题，采用反向映射后，需通过插值方法决定输出图像该位置的值，因此需要选择插值算法。通常有最近邻插值、双线性插值，双三次插值等，OpencV默认采用双线性插值，我们也就采用双线性插值。
 
 ## 2.5 基于OpenCV的实现
@@ -288,17 +302,17 @@ void affine_trans_translation(cv::Mat& src, cv::Mat& dst, double tx, double ty){
 
 ```
 ### 效果
-#### 1、旋转45度
+#### 1、旋转45度  
 ![Image](https://img-blog.csdnimg.cn/20200413011504574.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
-#### 2、平移
+#### 2、平移  
 ![Image](https://img-blog.csdnimg.cn/20200413011634929.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
 ###  相关技术文档、博客、教材、项目推荐
-opencv文档: [https://docs.opencv.org/3.1.0/da/d54/group__imgproc__transform.html#ga0203d9ee5fcd28d40dbc4a1ea4451983](https://docs.opencv.org/3.1.0/da/d54/group__imgproc__transform.html#ga0203d9ee5fcd28d40dbc4a1ea4451983)
-博客：[https://blog.csdn.net/weixin_40647819/article/details/87912122](https://blog.csdn.net/weixin_40647819/article/details/87912122)
-           [https://www.jianshu.com/p/18cd12e776e1](https://www.jianshu.com/p/18cd12e776e1) 
-           [https://blog.csdn.net/whuhan2013/article/details/53814026](https://blog.csdn.net/whuhan2013/article/details/53814026)
-python版本：[https://blog.csdn.net/g11d111/article/details/79978582](https://blog.csdn.net/g11d111/article/details/79978582)
-[https://www.kancloud.cn/aollo/aolloopencv/264331](https://www.kancloud.cn/aollo/aolloopencv/264331)                    [http://www.woshicver.com/FifthSection/4_2_%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/](http://www.woshicver.com/FifthSection/4_2_%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/ )
+opencv文档: [https://docs.opencv.org/3.1.0/da/d54/group__imgproc__transform.html#ga0203d9ee5fcd28d40dbc4a1ea4451983](https://docs.opencv.org/3.1.0/da/d54/group__imgproc__transform.html#ga0203d9ee5fcd28d40dbc4a1ea4451983)  
+博客：[https://blog.csdn.net/weixin_40647819/article/details/87912122](https://blog.csdn.net/weixin_40647819/article/details/87912122)  
+           [https://www.jianshu.com/p/18cd12e776e1](https://www.jianshu.com/p/18cd12e776e1)   
+           [https://blog.csdn.net/whuhan2013/article/details/53814026](https://blog.csdn.net/whuhan2013/article/details/53814026)  
+python版本：[https://blog.csdn.net/g11d111/article/details/79978582](https://blog.csdn.net/g11d111/article/details/79978582  
+[https://www.kancloud.cn/aollo/aolloopencv/264331](https://www.kancloud.cn/aollo/aolloopencv/264331)                      [http://www.woshicver.com/FifthSection/4_2_%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/](http://www.woshicver.com/FifthSection/4_2_%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/ )  
 
 ## 2.6 总结
 该部分对几何变换的平移和旋转进行了介绍，读者可根据提供的资料对相关原理进行学习，然后参考示例代码自行实现。另外读者可以尝试学习并实现其他几何变换，如偏移。
