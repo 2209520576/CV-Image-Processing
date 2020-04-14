@@ -73,12 +73,13 @@ g(x,y)为该邻域的中心像素，n跟系数模版大小有关，一般3*3邻�
 二维高斯分布
 高斯分布公式终于要出场了！
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412165241878.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412165241878.png)  
 其中不必纠结于系数，因为它只是一个常数！并不会影响互相之间的比例关系，并且最终都要进行归一化，所以在实际计算时我们是忽略它而只计算后半部分:
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412165426976.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412165426976.png)  
 其中(x,y)为掩膜内任一点的坐标，(ux,uy)为掩膜内中心点的坐标，在图像处理中可认为是整数；σ是标准差。
 
-例如：要产生一个3×3的高斯滤波器模板，以模板的中心位置为坐标原点进行取样。模板在各个位置的坐标，如下所示（x轴水平向右，y轴竖直向下）。
+例如：要产生一个3×3的高斯滤波器模板，以模板的中心位置为坐标原点进行取样。模板在各个位置的坐标，如下所示（x轴水平向右，y轴竖直向下）。  
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412165500464.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)  
 这样，将各个位置的坐标带入到高斯函数中，得到的值就是模板的系数。
 对于窗口模板的大小为 (2k+1)×(2k+1)，模板中各个元素值的计算公式如下：
@@ -470,7 +471,7 @@ void GaussianFilter(cv::Mat& src, cv::Mat& dst, cv::Mat window){
 opencv文档: [https://docs.opencv.org/3.1.0/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37](https://docs.opencv.org/3.1.0/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37)    
 博客：[https://blog.csdn.net/weixin_40647819/article/details/89740234](https://blog.csdn.net/weixin_40647819/article/details/89740234)  
            [https://blog.csdn.net/weixin_40647819/article/details/88774522](https://blog.csdn.net/weixin_40647819/article/details/88774522)     
-python版本：[https://www.kancloud.cn/aollo/aolloopencv/269599](https://blog.csdn.net/weixin_40647819/article/details/88774522)                    [http://www.woshicver.com/FifthSection/4_4_%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91/ ] (http://www.woshicver.com/FifthSection/4_4_%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91/ )  
+python版本：[https://www.kancloud.cn/aollo/aolloopencv/269599](https://blog.csdn.net/weixin_40647819/article/details/88774522)                    [http://www.woshicver.com/FifthSection/4_4_%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91/](http://www.woshicver.com/FifthSection/4_4_%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91/)  
 
   
 ## 4.6 总结 
