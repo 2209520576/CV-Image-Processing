@@ -30,8 +30,6 @@
 
 ### 6.4.1 Sobel算子
 
-![](https://img-blog.csdnimg.cn/2020041517165149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
-![Image](https://img-blog.csdnimg.cn/2020041517165149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
 
 我们可以使用$3 \times 3$ 的卷积核来进行图像求导：  
 
