@@ -7,7 +7,6 @@
 边缘是图像强度函数快速变化的地方
 
 ### 6.1.2 如何检测边缘？
-
 为了检测边缘，我们需要检测图像中的**不连续性**，可以使用**导数**来检测不连续性。
 
 ![](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/edge1.jpg)
@@ -31,7 +30,8 @@
 
 ### 6.4.1 Sobel算子
 
-
+![](https://img-blog.csdnimg.cn/2020041517165149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
+![Image](https://img-blog.csdnimg.cn/2020041517165149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
 
 我们可以使用$3 \times 3$ 的卷积核来进行图像求导：  
 
