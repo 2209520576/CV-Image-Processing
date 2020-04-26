@@ -1,34 +1,34 @@
-# Datawhale 计算机视觉基础-图像处理（上）- Task06 边缘检测
+# Datawhale 计算机视觉基础-图像处理- Task06 边缘检测
 
-## 6.1 简介
+## 简介
 
-### 6.1.1 什么是边缘？
+### 什么是边缘？
 
 边缘是图像强度函数快速变化的地方
 
-### 6.1.2 如何检测边缘？
+### 如何检测边缘？
 为了检测边缘，我们需要检测图像中的**不连续性**，可以使用**导数**来检测不连续性。
 
-![](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/edge1.jpg)
+![](IMG/edge1.jpg)
 
 如上图所示，上图的第一幅图表示一张数字图片，我们对水平红线处进行求导，便可得到上图二中的关系，可以看到在边缘处有着较大的跳变。但是，导数也会受到噪声的影响，因此建议在求导数之前先对图像进行平滑处理（上图三）。
 
 但是，导数也会受到噪声的影响，因此建议在求导数之前先对图像进行平滑处理。 然后我们可以使用遮罩使用卷积来检测边缘。 同样，我不打算讨论数学部分，这里我们仅关注实现细节。
 
-## 6.2 学习目标
+## 学习目标
 
 - 掌握Sobel边缘检测的原理
 - 掌握Canny边缘检测的原理
 
-## 6.3 内容介绍
+## 内容介绍
 
 1. Sobel,Canny算子介绍
 2. OpenCV 代码实践
 3. 动手实践并打卡（读者完成）
 
-## 6.4 算法理论介绍与推荐
+## 算法理论介绍与推荐
 
-### 6.4.1 Sobel算子
+### Sobel算子
 
 
 我们可以使用$3 \times 3$ 的卷积核来进行图像求导：  
@@ -55,7 +55,7 @@ $$
 
 其中“ * ” 为卷积符号，sum表示矩阵中所有元素相加求和。
 
-### 6.4.2 Canny边缘检测
+### Canny边缘检测
 
 Canny边缘检测于1986年由JOHN CANNY首次在论文《A Computational Approach to Edge Detection》中提出，就此拉开了Canny边缘检测算法的序幕。
 
@@ -117,7 +117,7 @@ $$
 
 比如计算出的$\theta=91 $度,则应将其归类到90--270度方向
 
-![](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/angle.png)
+![](IMG/angle.png)
 
 #### 3.非极大值抑制(NMS)
 
@@ -129,15 +129,15 @@ $$
 
 一张图解释双阈值算法检测：
 
-![](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/doubleThreshold.png)
+![](IMG/doubleThreshold.png)
 
 双阈值法非常简单，我们假设两类边缘：经过非极大值抑制之后的边缘点中，**梯度值超过TH的称为强边缘，梯度值小于TH大于TL的称为弱边缘，梯度小于TL的不是边缘**。
 
 可以肯定的是，强边缘必然是边缘点，因此必须将T1设置的足够高，以要求像素点的梯度值足够大（变化足够剧烈），而弱边缘可能是边缘，也可能是噪声，如何判断呢？**当弱边缘的周围8邻域有强边缘点存在时，就将该弱边缘点变成强边缘点**，以此来实现对强边缘的补充。实际中人们发现T1:T2=2:1的比例效果比较好，其中T1可以人为指定，也可以设计算法来自适应的指定，比如定义梯度直方图的前30%的分界线为T1。检查8邻域的方法叫边缘滞后跟踪，连接边缘的办法还有区域生长法等等。
 
-## 6.5 基于OpenCV的实现
+## 基于OpenCV的实现
 
-### 6.5.1 Sobel算子
+### Sobel算子
 
 opencv使用sobel 算子的方法是`cv2.Sobel`
 
@@ -180,7 +180,7 @@ plt.show()
 
 结果：
 
-![](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/sobel_result.png)
+![](IMG/sobel_result.png)
 
 #### 6.5.2 Canny算法
 
@@ -219,9 +219,9 @@ plt.show()
 
 结果：
 
-![](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/canny_result.png)
+![](IMG/canny_result.png)
 
-## 6.6 总结
+## 总结
 
 本节学习了边缘检测的两个算法原理，并使用opencv做了demo演示，想要更深入理解的原理，可以查看opencv源代码，并从低层一步一步coding出来。
 

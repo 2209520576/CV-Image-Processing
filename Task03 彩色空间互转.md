@@ -1,16 +1,16 @@
-# Datawhale 计算机视觉基础-图像处理（上）-Task03 彩色空间互转
+# Datawhale 计算机视觉基础-图像处理-Task03 彩色空间互转
 
-## 3.1 简介
+## 简介
 图像彩色空间互转在图像处理中应用非常广泛，而且很多算法只对灰度图有效；另外，相比RGB，其他颜色空间(比如HSV、HSI)更具可分离性和可操作性，所以很多图像算法需要将图像从RGB转为其他颜色空间，所以图像彩色互转是十分重要和关键的。
 
 
-## 3.2 学习目标
+## 学习目标
 
 * 了解相关颜色空间的基础知识
 * 理解彩色空间互转的理论
 * 掌握OpenCV框架下颜色空间互转API的使用
 
-## 3.3 内容介绍
+## 内容介绍
  1.相关颜色空间的原理介绍
  
  2.颜色空间互转理论的介绍
@@ -19,30 +19,30 @@
  
  4.动手实践并打卡（读者完成）
 
-## 3.4 算法理论介绍与资料推荐
-### 3.4.1 RGB与灰度图互转
+## 算法理论介绍与资料推荐
+### RGB与灰度图互转
 RGB（红绿蓝）是依据人眼识别的颜色定义出的空间，可表示大部分颜色。但在科学研究一般不采用RGB颜色空间，因为它的细节难以进行数字化的调整。它将色调，亮度，饱和度三个量放在一起表示，很难分开。它是最通用的面向硬件的彩色模型。该模型用于彩色监视器和一大类彩色视频摄像。
 
 RGB颜色空间 基于颜色的加法混色原理，从黑色不断叠加Red，Green，Blue的颜色，最终可以得到白色，如图：
-<div align=center><img width = '400' height ='400' src ="https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB1.png"/></div>
+<div align=center><img width = '400' height ='400' src ="IMG/RGB1.png"/></div>
 
 将R、G、B三个通道作为笛卡尔坐标系中的X、Y、Z轴，就得到了一种对于颜色的空间描述，如图：
-<div align=center><img width = '400' height ='400' src ="https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2.jpg"/></div>
-<div align=center><img width = '400' height ='400' src ="https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB3.jpg"/></div>
+<div align=center><img width = '400' height ='400' src ="IMG/RGB2.jpg"/></div>
+<div align=center><img width = '400' height ='400' src ="IMG/RGB3.jpg"/></div>
 
 **对于彩色图转灰度图，有一个很著名的心理学公式：**  
 
 <p align="center"> Gray = R * 0.299 + G * 0.587 + B * 0.114 </p>
 
 
-### 3.4.2 RGB与HSV互转
+### RGB与HSV互转
 
 HSV是一种将RGB色彩空间中的点在倒圆锥体中的表示方法。HSV即色相(Hue)、饱和度(Saturation)、明度(Value)，又称HSB(B即Brightness)。色相是色彩的基本属性，就是平常说的颜色的名称，如红色、黄色等。饱和度（S）是指色彩的纯度，越高色彩越纯，低则逐渐变灰，取0-100%的数值。明度（V），取0-max(计算机中HSV取值范围和存储的长度有关)。HSV颜色空间可以用一个圆锥空间模型来描述。圆锥的顶点处，V=0，H和S无定义，代表黑色。圆锥的顶面中心处V=max，S=0，H无定义，代表白色。
 
 RGB颜色空间中，三种颜色分量的取值与所生成的颜色之间的联系并不直观。而HSV颜色空间，更类似于人类感觉颜色的方式，封装了关于颜色的信息：“这是什么颜色？深浅如何？明暗如何？
 
 #### HSV模型
-<div align=center><img width = '200' height ='200' src ="https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/HSV1.png"/></div>
+<div align=center><img width = '200' height ='200' src ="IMG/HSV1.png"/></div>
 
 这个模型就是按色彩、深浅、明暗来描述的。
 
@@ -51,24 +51,24 @@ H是色彩；
 S是深浅， S = 0时，只有灰度；
 
 V是明暗，表示色彩的明亮程度，但与光强无直接联系。
-<div align=center><img width = '200' height ='200' src ="https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/HSV2.jpg"/></div>
+<div align=center><img width = '200' height ='200' src ="IMG/HSV2.jpg"/></div>
     
 应用：可以用于偏光矫正、去除阴影、图像分割等
 
 
 **1.RGB2HSV**
-<div align=center><img width = '550' height ='250' src ="https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2HSV1.JPG"/></div>  
+<div align=center><img width = '550' height ='250' src ="IMG/RGB2HSV1.JPG"/></div>  
 
 **或**
 
-<div align=center><img width = '350' height ='250' src ="https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2HSV2.png"/></div>  
+<div align=center><img width = '350' height ='250' src ="IMG/RGB2HSV2.png"/></div>  
  
  
 **2.HSV2RGB**
-<div align=center><img width = '250' height ='360' src ="https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/HSV2RGB1.png"/></div>  
+<div align=center><img width = '250' height ='360' src ="IMG/HSV2RGB1.png"/></div>  
 
 
-## 3.5 基于OpenCV的实现
+## 基于OpenCV的实现
 
 * 工具：OpenCV3.1.0+VS2013
 * 平台：WIN10
@@ -301,10 +301,10 @@ int main(){
 ```
 ### 效果
 
- ![Image](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2gray.png)
+ ![Image](IMG/RGB2gray.png)
  
  
- ![Image](https://github.com/2209520576/CV-Image-Processing/blob/master/IMG/RGB2HSV.png)
+ ![Image](IMG/RGB2HSV.png)
   
   ---
 ### 相关技术文档、博客、书籍、项目推荐
@@ -313,7 +313,7 @@ opencv文档：https://docs.opencv.org/3.1.0/de/d25/imgproc_color_conversions.ht
      https://blog.csdn.net/weixin_40647819/article/details/92660320  
 python版本：https://www.kancloud.cn/aollo/aolloopencv/263731  
   
-## 3.6 总结 
+## 总结 
 
 该部分主要讲解彩色空间互转，彩色空间互转是传统图像算法的一个关键技术，学习颜色转换有助于我们理解图像的色域，从而为我们从事CV相关工程技术和科学研究提供一些基础、灵感和思路。
   
