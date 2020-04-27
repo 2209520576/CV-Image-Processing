@@ -19,7 +19,7 @@ ENDCOVER='\n\n\n###### <br><br><br><br><br><br><br><br><br><br><br>'
 # 添加封面内容
 cmd='
 HEAD="""
-###### <sup>Datawhale</sup><br>数字图像处理教程<br>────────<br><br>`# 版本丨V1.0 #`<br><br><br>**王程伟 任乔牧 李芝翔 张强**<br><br><div align=center><img src="assets/icon.jpg" style="zoom:50%;" /></div><br>*公众号 Datawhale*<br>*Github Datawhalechina*<br>*http://www.datawhale.club*<br>
+###### <sup>Datawhale</sup><br>数字图像处理教程<br>────────<br><br>`# 版本丨V1.0 #`<br><br><br>**王程伟 任乔牧 李芝翔 张强**<br><br><div align=center><img src="assets/icon.jpg" style="zoom:50%;" /></div><br><br>*Github Datawhalechina*<br>*http://www.datawhale.club*<br>
 """
 with open("./图像处理教程.md", "r+") as f:
      old = f.read()
