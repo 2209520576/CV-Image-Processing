@@ -1,4 +1,4 @@
-﻿# Datawhale 计算机视觉基础-图像处理-Task02 几何变换
+# Datawhale 计算机视觉基础-图像处理-Task02 几何变换
 
 ## 简介 
 该部分将对基本的几何变换进行学习，几何变换的原理大多都是相似，只是变换矩阵不同，因此，我们以最常用的平移和旋转为例进行学习。在深度学习领域，我们常用平移、旋转、镜像等操作进行数据增广；在传统CV领域，由于某些拍摄角度的问题，我们需要对图像进行矫正处理，而几何变换正是这个处理过程的基础，因此了解和学习几何变换也是有必要的。
@@ -129,7 +129,7 @@ C++: Mat getRotationMatrix2D(Point2f center, double angle, double scale)
 * 第三个参数，double类型的scale，缩放系数。## 2.6 总结 
 
 ### 实现示例（c++)
-#### 1、旋转 
+#### 旋转 
 ```cpp
 	cv::Mat src = cv::imread("lenna.jpg");
 	cv::Mat dst;
@@ -159,7 +159,7 @@ C++: Mat getRotationMatrix2D(Point2f center, double angle, double scale)
 	return 0;
 ```
 
-####  2、平移
+#### 平移
 
 ```cpp
 	cv::Mat src = cv::imread("lenna.jpg");
@@ -188,7 +188,7 @@ C++: Mat getRotationMatrix2D(Point2f center, double angle, double scale)
 ```
 
 ### 进阶实现(根据原理自己实现)
-####  1、旋转
+#### 旋转
 
 ```cpp
 /*图像旋转（以图像中心为旋转中心）*/
@@ -248,7 +248,7 @@ void affine_trans_rotate(cv::Mat& src, cv::Mat& dst, double Angle){
 
 ```
 
-####  2、平移
+#### 平移
 
 ```cpp
 /*平移变换*（以图像左顶点为原点）/
@@ -302,9 +302,9 @@ void affine_trans_translation(cv::Mat& src, cv::Mat& dst, double tx, double ty){
 
 ```
 ### 效果
-#### 1、旋转45度  
+#### 旋转45度  
 ![Image](https://img-blog.csdnimg.cn/20200413011504574.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
-#### 2、平移  
+#### 平移  
 ![Image](https://img-blog.csdnimg.cn/20200413011634929.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70)
 ###  相关技术文档、博客、教材、项目推荐
 opencv文档: [https://docs.opencv.org/3.1.0/da/d54/group__imgproc__transform.html#ga0203d9ee5fcd28d40dbc4a1ea4451983](https://docs.opencv.org/3.1.0/da/d54/group__imgproc__transform.html#ga0203d9ee5fcd28d40dbc4a1ea4451983)  

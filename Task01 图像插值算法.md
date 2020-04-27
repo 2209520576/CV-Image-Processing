@@ -183,7 +183,7 @@ int main(int argc, char* argv[])
 ```
 **原图**
 
-![SRC](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa9.png)
+![SRC](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa9.jpg)
 
 **0.2倍缩小，双线性插值**
 
@@ -195,7 +195,7 @@ int main(int argc, char* argv[])
 
 **1.5倍放大，双线性插值**
 
-![SRC](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa9.png)
+![SRC](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa9.jpg)
 
 
 ### Python
