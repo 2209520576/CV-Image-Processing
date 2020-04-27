@@ -1,15 +1,15 @@
-# Datawhale 计算机视觉基础-图像处理（上）-Task01 OpenCV框架与图像插值算法
+# Datawhale 计算机视觉基础-图像处理-Task01 OpenCV框架与图像插值算法
 
-## 1.1 简介 
+## 简介 
 &emsp;&emsp;在图像处理中，平移变换、旋转变换以及放缩变换是一些基础且常用的操作。这些几何变换并不改变图象的象素值，只是在图象平面上进行象素的重新排列。在一幅输入图象$[u，v]$中，灰度值仅在整数位置上有定义。然而，输出图象[x，y]的灰度值一般由处在非整数坐标上的$（u，v）$值来决定。这就需要插值算法来进行处理，常见的插值算法有最近邻插值、双线性插值和三次样条插值。
 
-## 1.2 学习目标
+## 学习目标
 
 - 了解插值算法与常见几何变换之间的关系
 - 理解插值算法的原理
 - 掌握OpenCV框架下插值算法API的使用
 
-## 1.3 内容介绍
+## 内容介绍
 
 1. 插值算法原理介绍
    - 最近邻插值算法
@@ -18,9 +18,9 @@
    - cv.resize()各项参数及含义
 3. 动手实现（由读者自己完成）
 
-## 1.4 算法理论介绍与推荐
+## 算法理论介绍与推荐
 
-### 1.4.1 最近邻插值算法原理
+### 最近邻插值算法原理
 
 &emsp;&emsp;最近邻插值，是指将目标图像中的点，对应到源图像中后，找到最相邻的整数点，作为插值后的输出。
 
@@ -60,7 +60,7 @@ $$
 ![Image1](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa4.png)
 
 
-### 1.4.2 双线性插值
+### 双线性插值
 
 &emsp;&emsp;在讲双线性插值之前先看以一下线性插值，线性插值多项式为：
 
@@ -101,7 +101,7 @@ f(x, y)=[f(1,0)-f(0,0)] x+[f(0,1)-f(0,0)] y \\
 \end{array}$$
 
 
-### 1.4.3 映射方法
+### 映射方法
 
 **向前映射法**
 		
@@ -120,9 +120,9 @@ f(x, y)=[f(1,0)-f(0,0)] x+[f(0,1)-f(0,0)] y \\
 
 
 
-## 1.5 基于OpenCV的实现
+## 基于OpenCV的实现
 
-### 1.5.1 C++
+### C++
 
 **函数原型：**
 
@@ -183,7 +183,7 @@ int main(int argc, char* argv[])
 ```
 **原图**
 
-![SRC](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa9.png)
+![SRC](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa9.jpg)
 
 **0.2倍缩小，双线性插值**
 
@@ -195,10 +195,10 @@ int main(int argc, char* argv[])
 
 **1.5倍放大，双线性插值**
 
-![SRC](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa9.png)
+![SRC](https://github.com/Sandy1230/Python_for-OpenCv/raw/master/image/chazhisuanfa9.jpg)
 
 
-### 1.5.2 Python
+### Python
 
 **函数原型：**
 >cv2.resize(src, dsize[, dst[, fx[, fy[, interpolation]]]])
@@ -273,7 +273,7 @@ if __name__ == "__main__":
 
 
   
-## 1.6 总结 
+## 总结 
 
  &emsp;&emsp;插值算法是很多几何变换的基础和前置条件，对插值算法细节的掌握有助于对其他算法的理解，为自己的学习打下坚实的基础。
   
