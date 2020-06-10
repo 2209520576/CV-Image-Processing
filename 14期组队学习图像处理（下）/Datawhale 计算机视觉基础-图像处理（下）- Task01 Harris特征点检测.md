@@ -18,7 +18,7 @@
 ## 1.4 内容介绍   
       
 ###  1.4.1 基础知识
-#### 1.角点
+### 1.角点
 使用一个滑动窗口在下面三幅图中滑动，可以得出以下结论：
 * 左图表示一个平坦区域，在各方向移动，窗口内像素值均没有太大变化；
 * 中图表示一个边缘特征（Edges），如果沿着水平方向移动(梯度方向)，像素值会发生跳变；如果沿着边缘移动(平行于边缘) ，像素值不会发生变化；
@@ -26,10 +26,10 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200609204249219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)
 所以，右图是一个角点。
 
-#### 2.角点类型
+### 2.角点类型
 下图展示了不同角点的类型，可以发现：如果使用一个滑动窗口以角点为中心在图像上滑动，存在朝多个方向上的移动会引起该区域的像素值发生很大变化的现象。
 ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMDQwNTc1NTQtMTEzNDYyNjYwLnBuZw?x-oss-process=image/format,png#pic_center)
-#### 3.图像梯度
+### 3.图像梯度
 “*像素值发生很大变化*”这一现象可以用图像梯度进行描述。在图像局部内，图像梯度越大表示该局部内像素值变化越大（灰度的变化率越大）。
 而图像的梯度在数学上可用**微分或者导数**来表示。对于数字图像来说，相当于是**二维离散函数求梯度**，并使用差分来近似导数：
 $G_x(x,y)=H(x+1,y)-H(x-1,y)$
@@ -37,7 +37,7 @@ $G_y(x,y)=H(x,y+1)-H(x,y-1)$
 在实际操作中，对图像求梯度通常是考虑图像的每个像素的某个邻域内的灰度变化，因此通常对原始图像中像素某个邻域设置梯度算子，然后采用小区域模板进行卷积来计算，常用的有Prewitt算子、Sobel算子、Robinson算子、Laplace算子等。
 
 ### 1.4.2 Harris角点检测算法原理
-#### 1. 算法思想  
+### 1. 算法思想  
 算法的核心是利用局部窗口在图像上进行移动，判断灰度是否发生较大的变化。如果窗口内的灰度值（在梯度图上）都有较大的变化，那么这个窗口所在区域就存在角点。  
 
 这样就可以将 Harris 角点检测算法分为以下三步：
@@ -46,7 +46,8 @@ $G_y(x,y)=H(x,y+1)-H(x,y-1)$
 * 对于每个窗口，都计算其对应的一个角点响应函数 $R$；
 * 然后对该函数进行阈值处理，如果 $R > threshold$，表示该窗口对应一个角点特征。
    
- #### 2. 第一步—建立数学模型
+ ### 2. 第一步 — 建立数学模型    
+           
  **第一步是通过建立数学模型，确定哪些窗口会引起较大的灰度值变化。**
  让一个窗口的中心位于灰度图像的一个位置$(x,y)$，这个位置的像素灰度值为$I(x,y)$ ，如果这个窗口分别向 $x$ 和 $y$ 方向移动一个小的位移$u$和$v$，到一个新的位置 $(x+u,y+v)$ ，这个位置的像素灰度值就是$I(x+u,y+v)$ 。   
              
@@ -88,7 +89,7 @@ $I_y=\frac{\partial I(x,y)}{\partial y}$
  这里利用了**线性代数中的实对称矩阵对角化**的相关知识，有兴趣的同学可以进一步查阅相关资料。
        
        
-#### 3. 第二步—角点响应函数R
+### 3. 第二步—角点响应函数R
 现在我们已经得到 $E(u,v)$的最终形式，别忘了我们的目的是要找到会引起较大的灰度值变化的那些窗口。
 
 灰度值变化的大小则取决于矩阵M，M为梯度的协方差矩阵。在实际应用中为了能够应用更好的编程，所以定义了角点响应函数R，通过判定R大小来判断像素是否为角点。 
@@ -101,7 +102,7 @@ $λ1$ 和 $λ2$ 是矩阵$M$的特征值，  $k$是一个经验常数，在范�
 
 $R$的值取决于$M$的特征值，对于角点$|R|$很大，平坦的区域$|R|$很小，边缘的$R$为负值。
 
-#### 4. 第三步—角点判定
+### 4. 第三步—角点判定
 根据 R 的值，将这个窗口所在的区域划分为平面、边缘或角点。为了得到最优的角点，我们还可以使用非极大值抑制。   
 
  注意：Harris 检测器具有旋转不变性，但不具有尺度不变性，也就是说尺度变化可能会导致角点变为边缘。想要尺度不变特性的话，可以关注SIFT特征。    
@@ -118,7 +119,7 @@ $R$的值取决于$M$的特征值，对于角点$|R|$很大，平坦的区域$|R
 Harris 角点检测的结果是带有这些分数 R 的灰度图像，设定一个阈值，分数大于这个阈值的像素就对应角点。
 ## 1.5 基于OpenCV的实现
 
-#### 1. API
+### 1. API
 在opencv中有提供实现 Harris 角点检测的函数 cv2.cornerHarris，我们直接调用的就可以，非常方便。
 
 函数原型：`cv2.cornerHarris(src, blockSize, ksize, k[, dst[, borderType]])` 
@@ -133,7 +134,7 @@ Harris 角点检测的结果是带有这些分数 R 的灰度图像，设定一�
 * ksize - 用于计算梯度图的Sobel算子的尺寸
 * k - 用于计算角点响应函数的参数k，取值范围常在0.04~0.06之间
 
-#### 代码示例
+### 代码示例
 ```python
 import cv2 as cv
 from matplotlib import pyplot as plt
@@ -178,9 +179,10 @@ image = cv.cvtColor(image, cv2.COLOR_BGR2RGB)
 plt.imshow(image)
 plt.show()
 ```
-    
-结果：
-  ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061019023712.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70#pic_center)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610190150712.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)
+     
+### 结果：         
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061019023712.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610190150712.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)
 
 
 ## 1.6 总结 
@@ -189,13 +191,13 @@ plt.show()
 Harris角点检测的性质可总结如下：
 * **阈值决定角点的数量**
 * **Harris角点检测算子对亮度和对比度的变化不敏感（光照不变性）**
-  在进行Harris角点检测时，使用了微分算子对图像进行微分运算，而微分运算对图像密度的拉升或收缩和对亮度的抬高或下降不敏感。换言之，对亮度和对比度的仿射变换并不改变Harris响应的极值点出现的位置，但是，由于阈值的选择，可能会影响角点检测的数量。
-  ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTEwNTc1ODUtOTE5ODk5OTcucG5n?x-oss-process=image/format,png#pic_center)
+  在进行Harris角点检测时，使用了微分算子对图像进行微分运算，而微分运算对图像密度的拉升或收缩和对亮度的抬高或下降不敏感。换言之，对亮度和对比度的仿射变换并不改变Harris响应的极值点出现的位置，但是，由于阈值的选择，可能会影响角点检测的数量。          
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTEwNTc1ODUtOTE5ODk5OTcucG5n?x-oss-process=image/format,png#pic_center)
        
        
 * **Harris角点检测算子具有旋转不变性**
-   Harris角点检测算子使用的是角点附近的区域灰度二阶矩矩阵。而二阶矩矩阵可以表示成一个椭圆，椭圆的长短轴正是二阶矩矩阵特征值平方根的倒数。当特征椭圆转动时，特征值并不发生变化，所以判断角点响应值也不发生变化，由此说明Harris角点检测算子具有旋转不变性。
-   ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTExNDA1NTQtMTQxNTkyMDkyNi5wbmc?x-oss-process=image/format,png#pic_center)     
+   Harris角点检测算子使用的是角点附近的区域灰度二阶矩矩阵。而二阶矩矩阵可以表示成一个椭圆，椭圆的长短轴正是二阶矩矩阵特征值平方根的倒数。当特征椭圆转动时，特征值并不发生变化，所以判断角点响应值也不发生变化，由此说明Harris角点检测算子具有旋转不变性。          
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTExNDA1NTQtMTQxNTkyMDkyNi5wbmc?x-oss-process=image/format,png#pic_center)     
     
 * **Harris角点检测算子不具有尺度不变性**
 尺度的变化会将角点变为边缘，或者边缘变为角点，Harris的理论基础并不具有尺度不变性。
