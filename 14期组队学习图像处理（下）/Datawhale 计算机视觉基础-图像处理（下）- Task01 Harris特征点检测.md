@@ -66,24 +66,24 @@ $|I(x+u,y+v)-I(x,y)|$就是窗口移动引起的灰度值的变化值。
 为了提高计算效率，对上述公式进行简化，利用泰勒级数展开来得到这个公式的近似形式：
 
 对于二维的泰勒展开式公式为：   
-$T(x,y)=f(u,v)+(x-u)f_x(u,v)+(y-v)f_y(u,v)+....$  
+$T(x,y)=f(u,v)+(x-u)f_x(u,v)+(y-v)f_y(u,v)+....$             
 
-则$I(x+u,y+v)$ 为：
+则$I(x+u,y+v)$ 为：          
 $I(x+u,y+v)=I(x,y)+uI_x+vI_y$
 
-其中$I_x$和$I_y$是$I$的微分（偏导），在图像中就是求$x$ 和 $y$ 方向的**梯度图**：
+其中$I_x$和$I_y$是$I$的微分（偏导），在图像中就是求$x$ 和 $y$ 方向的**梯度图**：     
 
-$I_x=\frac{\partial I(x,y)}{\partial x}$
+$I_x=\frac{\partial I(x,y)}{\partial x}$            
 $I_y=\frac{\partial I(x,y)}{\partial y}$
              
- 将$I(x+u,y+v)=I(x,y)+uI_x+vI_y$代入$E(u，v)$可得： 
+ 将$I(x+u,y+v)=I(x,y)+uI_x+vI_y$代入$E(u，v)$可得：             
  
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123808434.png)              
        
  提出 u 和 v ，得到最终的近似形式：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123233564.png)        
            
-其中矩阵M为：      
+其中矩阵M为：             
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123258145.png)           
                 
@@ -99,7 +99,7 @@ $I_y=\frac{\partial I(x,y)}{\partial y}$
 灰度值变化的大小则取决于矩阵M，M为梯度的协方差矩阵。在实际应用中为了能够应用更好的编程，所以定义了角点响应函数R，通过判定R大小来判断像素是否为角点。 
 
 计算每个窗口对应的得分（角点响应函数R定义）：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610124043231.png)           
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610124043231.png)                 
 其中 $det(M)=\lambda_1\lambda_2$是矩阵的行列式， $trace(M)=\lambda_1+\lambda_2$ 是矩阵的迹。    
 
 $λ1$ 和 $λ2$ 是矩阵$M$的特征值，  $k$是一个经验常数，在范围 (0.04, 0.06) 之间。   
@@ -118,7 +118,7 @@ $R$的值取决于$M$的特征值，对于角点$|R|$很大，平坦的区域$|R
 * 角点：[公式] 值很大，在水平、竖直两个方向上变化均较大的点，即 $I_x$和 $I_y$ 都较大，也就是 λ1 和 λ2 都很大。    
     
    如下图所示： 
-  ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTA1NDU5OTEtNDQ0Njk1NTE4LnBuZw?x-oss-process=image/format,png#pic_center)          
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTA1NDU5OTEtNDQ0Njk1NTE4LnBuZw?x-oss-process=image/format,png#pic_center)                
                        
 Harris 角点检测的结果是带有这些分数 R 的灰度图像，设定一个阈值，分数大于这个阈值的像素就对应角点。
 ## 1.5 基于OpenCV的实现
@@ -204,7 +204,7 @@ Harris角点检测的性质可总结如下：
 ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTExNDA1NTQtMTQxNTkyMDkyNi5wbmc?x-oss-process=image/format,png#pic_center)            
     
 * **Harris角点检测算子不具有尺度不变性**
-尺度的变化会将角点变为边缘，或者边缘变为角点，Harris的理论基础并不具有尺度不变性。
+尺度的变化会将角点变为边缘，或者边缘变为角点，Harris的理论基础并不具有尺度不变性。                           
 ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTExNTk2NjMtMjA5NDMzNzQyNy5wbmc?x-oss-process=image/format,png#pic_center)        
 ## 相关技术文档、论文推荐
 *  [论文：《C.Harris, M.Stephens. “A Combined Corner and Edge Detector”. Proc. of 4th Alvey Vision Conference》](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.434.4816&rep=rep1&type=pdf)  
