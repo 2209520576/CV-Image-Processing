@@ -22,13 +22,14 @@
 使用一个滑动窗口在下面三幅图中滑动，可以得出以下结论：
 * 左图表示一个平坦区域，在各方向移动，窗口内像素值均没有太大变化；
 * 中图表示一个边缘特征（Edges），如果沿着水平方向移动(梯度方向)，像素值会发生跳变；如果沿着边缘移动(平行于边缘) ，像素值不会发生变化；
-* 右图表示一个角（Corners），不管你把它朝哪个方向移动，像素值都会发生很大变化。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200609204249219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)
+* 右图表示一个角（Corners），不管你把它朝哪个方向移动，像素值都会发生很大变化。        
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200609204249219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)       
+            
 所以，右图是一个角点。
 
 ### 2.角点类型
-下图展示了不同角点的类型，可以发现：如果使用一个滑动窗口以角点为中心在图像上滑动，存在朝多个方向上的移动会引起该区域的像素值发生很大变化的现象。
-![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMDQwNTc1NTQtMTEzNDYyNjYwLnBuZw?x-oss-process=image/format,png#pic_center)
+下图展示了不同角点的类型，可以发现：如果使用一个滑动窗口以角点为中心在图像上滑动，存在朝多个方向上的移动会引起该区域的像素值发生很大变化的现象。         
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMDQwNTc1NTQtMTEzNDYyNjYwLnBuZw?x-oss-process=image/format,png#pic_center)        
 ### 3.图像梯度
 “*像素值发生很大变化*”这一现象可以用图像梯度进行描述。在图像局部内，图像梯度越大表示该局部内像素值变化越大（灰度的变化率越大）。
 而图像的梯度在数学上可用**微分或者导数**来表示。对于数字图像来说，相当于是**二维离散函数求梯度**，并使用差分来近似导数：
@@ -57,9 +58,9 @@ $|I(x+u,y+v)-I(x,y)|$就是窗口移动引起的灰度值的变化值。
 
 当然，也可以把 $w(x,y)$设定为以窗口中心为原点的高斯分布，即一个高斯核。如果窗口中心点像素是角点，那么窗口移动前后，中心点的灰度值变化非常强烈，所以该点权重系数应该设大一点，表示该点对灰度变化的贡献较大；而离窗口中心（角点）较远的点，这些点的灰度变化比较小，于是将权重系数设小一点，表示该点对灰度变化的贡献较小。
 
-则窗口在各个方向上移动 $(u,v)$所造成的像素灰度值的变化量公式如下：
+则窗口在各个方向上移动 $(u,v)$所造成的像素灰度值的变化量公式如下：          
 
-![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTAyNDQ3NTctMTI4MTA5NjM5NS5wbmc?x-oss-process=image/format,png#pic_center)
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTAyNDQ3NTctMTI4MTA5NjM5NS5wbmc?x-oss-process=image/format,png#pic_center)             
 若窗口内是一个角点，则$E(u,v)$的计算结果将会很大。    
         
 为了提高计算效率，对上述公式进行简化，利用泰勒级数展开来得到这个公式的近似形式：
@@ -77,12 +78,15 @@ $I_y=\frac{\partial I(x,y)}{\partial y}$
              
  将$I(x+u,y+v)=I(x,y)+uI_x+vI_y$代入$E(u，v)$可得： 
  
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123808434.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123808434.png)              
+       
  提出 u 和 v ，得到最终的近似形式：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123233564.png)
-其中矩阵M为：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123233564.png)        
+           
+其中矩阵M为：      
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123258145.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610123258145.png)           
+                
 最后是把实对称矩阵对角化处理后的结果，可以把R看成旋转因子，其不影响两个正交方向的变化分量。
 
 经对角化处理后，将两个正交方向的变化分量提取出来，就是 λ1 和 λ2（特征值）。
@@ -95,8 +99,8 @@ $I_y=\frac{\partial I(x,y)}{\partial y}$
 灰度值变化的大小则取决于矩阵M，M为梯度的协方差矩阵。在实际应用中为了能够应用更好的编程，所以定义了角点响应函数R，通过判定R大小来判断像素是否为角点。 
 
 计算每个窗口对应的得分（角点响应函数R定义）：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610124043231.png)
-其中 $det(M)=\lambda_1\lambda_2$是矩阵的行列式， $trace(M)=\lambda_1+\lambda_2$ 是矩阵的迹。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610124043231.png)           
+其中 $det(M)=\lambda_1\lambda_2$是矩阵的行列式， $trace(M)=\lambda_1+\lambda_2$ 是矩阵的迹。    
 
 $λ1$ 和 $λ2$ 是矩阵$M$的特征值，  $k$是一个经验常数，在范围 (0.04, 0.06) 之间。   
 
@@ -114,7 +118,7 @@ $R$的值取决于$M$的特征值，对于角点$|R|$很大，平坦的区域$|R
 * 角点：[公式] 值很大，在水平、竖直两个方向上变化均较大的点，即 $I_x$和 $I_y$ 都较大，也就是 λ1 和 λ2 都很大。    
     
    如下图所示： 
-                  ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTA1NDU5OTEtNDQ0Njk1NTE4LnBuZw?x-oss-process=image/format,png#pic_center)
+  ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTA1NDU5OTEtNDQ0Njk1NTE4LnBuZw?x-oss-process=image/format,png#pic_center)          
                        
 Harris 角点检测的结果是带有这些分数 R 的灰度图像，设定一个阈值，分数大于这个阈值的像素就对应角点。
 ## 1.5 基于OpenCV的实现
@@ -181,9 +185,9 @@ plt.show()
 ```
      
 ### 结果：         
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061019023712.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610190150712.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)
-
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061019023712.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_16,color_FFFFFF,t_70#pic_center)                
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200610190150712.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)         
+  
 
 ## 1.6 总结 
 本小节对Harris角点检测算法进行了学习。通过这次学习我们了解了角点的概念、图像梯度等基本知识，也认识了基本的角点检测算法思想。
@@ -192,21 +196,21 @@ Harris角点检测的性质可总结如下：
 * **阈值决定角点的数量**
 * **Harris角点检测算子对亮度和对比度的变化不敏感（光照不变性）**
   在进行Harris角点检测时，使用了微分算子对图像进行微分运算，而微分运算对图像密度的拉升或收缩和对亮度的抬高或下降不敏感。换言之，对亮度和对比度的仿射变换并不改变Harris响应的极值点出现的位置，但是，由于阈值的选择，可能会影响角点检测的数量。          
-![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTEwNTc1ODUtOTE5ODk5OTcucG5n?x-oss-process=image/format,png#pic_center)
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTEwNTc1ODUtOTE5ODk5OTcucG5n?x-oss-process=image/format,png#pic_center)             
        
        
 * **Harris角点检测算子具有旋转不变性**
    Harris角点检测算子使用的是角点附近的区域灰度二阶矩矩阵。而二阶矩矩阵可以表示成一个椭圆，椭圆的长短轴正是二阶矩矩阵特征值平方根的倒数。当特征椭圆转动时，特征值并不发生变化，所以判断角点响应值也不发生变化，由此说明Harris角点检测算子具有旋转不变性。          
-![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTExNDA1NTQtMTQxNTkyMDkyNi5wbmc?x-oss-process=image/format,png#pic_center)     
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTExNDA1NTQtMTQxNTkyMDkyNi5wbmc?x-oss-process=image/format,png#pic_center)            
     
 * **Harris角点检测算子不具有尺度不变性**
 尺度的变化会将角点变为边缘，或者边缘变为角点，Harris的理论基础并不具有尺度不变性。
-![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTExNTk2NjMtMjA5NDMzNzQyNy5wbmc?x-oss-process=image/format,png#pic_center)
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTExNTk2NjMtMjA5NDMzNzQyNy5wbmc?x-oss-process=image/format,png#pic_center)        
 ## 相关技术文档、论文推荐
-*  [论文：《C.Harris, M.Stephens. “A Combined Corner and Edge Detector”. Proc. of 4th Alvey Vision Conference》](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.434.4816&rep=rep1&type=pdf)
-* [Harris角点算法](https://www.cnblogs.com/polly333/p/5416172.html)
-* [角点检测：Harris 与 Shi-Tomasi](https://zhuanlan.zhihu.com/p/83064609)
-* [https://www.cnblogs.com/ronny/p/4009425.html](https://www.cnblogs.com/ronny/p/4009425.html)
+*  [论文：《C.Harris, M.Stephens. “A Combined Corner and Edge Detector”. Proc. of 4th Alvey Vision Conference》](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.434.4816&rep=rep1&type=pdf)  
+* [Harris角点算法](https://www.cnblogs.com/polly333/p/5416172.html)     
+* [角点检测：Harris 与 Shi-Tomasi](https://zhuanlan.zhihu.com/p/83064609)    
+* [https://www.cnblogs.com/ronny/p/4009425.html](https://www.cnblogs.com/ronny/p/4009425.html)     
            
 ---
 **Task01  Harris特征点检测 END.**
@@ -214,7 +218,7 @@ Harris角点检测的性质可总结如下：
 --- ***By: 小武***
 
 
->博客：[https://blog.csdn.net/weixin_40647819](https://blog.csdn.net/weixin_40647819)
+>博客：[https://blog.csdn.net/weixin_40647819](https://blog.csdn.net/weixin_40647819)   
 
 
 **关于Datawhale**：
