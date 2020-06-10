@@ -73,8 +73,9 @@ $I(x+u,y+v)=I(x,y)+uI_x+vI_y$
 
 其中$I_x$和$I_y$是$I$的微分（偏导），在图像中就是求$x$ 和 $y$ 方向的**梯度图**：     
 
-$I_x=\frac{\partial I(x,y)}{\partial x}$            
-$I_y=\frac{\partial I(x,y)}{\partial y}$
+$I_x=\frac{\partial I(x,y)}{\partial x}$  
+                                        
+$I_y=\frac{\partial I(x,y)}{\partial y}$   
              
  将$I(x+u,y+v)=I(x,y)+uI_x+vI_y$代入$E(u，v)$可得：             
  
@@ -117,7 +118,8 @@ $R$的值取决于$M$的特征值，对于角点$|R|$很大，平坦的区域$|R
 * 边缘：$|R|$值为负数，仅在水平或竖直方向有较大的变化量，即 $I_x$和 $I_y$只有一个较大，也就是 λ1>>λ2 或 λ2>>λ1；
 * 角点：[公式] 值很大，在水平、竖直两个方向上变化均较大的点，即 $I_x$和 $I_y$ 都较大，也就是 λ1 和 λ2 都很大。    
     
-   如下图所示： 
+   如下图所示：                                   
+                    
 ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvNDUxNjYwLzIwMTYwNC80NTE2NjAtMjAxNjA0MjExMTA1NDU5OTEtNDQ0Njk1NTE4LnBuZw?x-oss-process=image/format,png#pic_center)                
                        
 Harris 角点检测的结果是带有这些分数 R 的灰度图像，设定一个阈值，分数大于这个阈值的像素就对应角点。
