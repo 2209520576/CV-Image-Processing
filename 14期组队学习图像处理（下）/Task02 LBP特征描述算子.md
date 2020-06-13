@@ -34,13 +34,13 @@ $$T \approx t\left(g_{0}-g_{c}, \ldots, g_{p-1}-g_{c}\right) \quad p=0, \ldots, 
 &emsp;&emsp;上式说明，将纹理特征定义为邻域像素和中心像素的差的联合分布函数，因为$g_p − g_c$是基本不受亮度均值影响的，所以从上式可以看出，此时统计量T 是一个跟亮度均值，即灰度级无关的值。
 
 &emsp;&emsp;最后定义特征函数如下：
-$\begin{array}{l}
+$$\begin{array}{l}
 T \approx t\left(s\left(g_{0}-g_{c}\right), \ldots, s\left(g_{p-1}-g_{c}\right)\right) p=0, \ldots, P-1 \\
 s(x)=\left\{\begin{array}{l}
 1, x \geq 0 \\
 0, x<0
 \end{array}\right.
-\end{array}\tag{3-4}$
+\end{array}\tag{3-4}$$
 
 &emsp;&emsp;定义灰度级不变LBP为：
 
