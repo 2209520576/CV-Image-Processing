@@ -81,10 +81,9 @@ plt.show()
  一般采用soble算子，OpenCV也是如此，利用soble水平和垂直算子与输入图像卷积计算$dx$、$dy$： 
                             
 ![在这里插入图片描述](https://private.codecogs.com/gif.latex?Sobel_X%20=%5Cbegin%7Bbmatrix%7D1%20%5C%5C%200%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D*%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5Cend%7Bbmatrix%7D=%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5C%5C%200&%200%20&0%20%5C%5C%20-1&%20-2%20&-1%20%5Cend%7Bbmatrix%7D)    
-                                          
-                                 
-![在这里插入图片描述]  (https://imgconvert.csdnimg.cn/aHR0cHM6Ly9wcml2YXRlLmNvZGVjb2dzLmNvbS9naWYubGF0ZXg_U29iZWxfWSUyMCUzRCU1Q2JlZ2luJTdCYm1hdHJpeCU3RDElMjAlNUMlNUMlMjAyJTIwJTVDJTVDJTIwMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlMjAqJTVDYmVnaW4lN0JibWF0cml4JTdEJTIwMSUyMCUyNiUyMDAlMjAlMjYtMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlM0QlNUNiZWdpbiU3QmJtYXRyaXglN0QlMjAxJTIwJTI2JTIwMCUyMCUyNi0xJTIwJTVDJTVDJTIwMiUyNjAlMjAlMjYtMiUyMCU1QyU1QyUyMDElMjAlMjYwJTIwJTI2LTElMjAlNUNlbmQlN0JibWF0cml4JTdE?x-oss-process=image/format,png#pic_center)                                     
-![在这里插入图片描述](https://private.codecogs.com/gif.latex?   d_%7Bx%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7Bx%7D%28x,%20y%29#pic_center)                                            
+                                                                           
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9wcml2YXRlLmNvZGVjb2dzLmNvbS9naWYubGF0ZXg_U29iZWxfWSUyMCUzRCU1Q2JlZ2luJTdCYm1hdHJpeCU3RDElMjAlNUMlNUMlMjAyJTIwJTVDJTVDJTIwMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlMjAqJTVDYmVnaW4lN0JibWF0cml4JTdEJTIwMSUyMCUyNiUyMDAlMjAlMjYtMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlM0QlNUNiZWdpbiU3QmJtYXRyaXglN0QlMjAxJTIwJTI2JTIwMCUyMCUyNi0xJTIwJTVDJTVDJTIwMiUyNjAlMjAlMjYtMiUyMCU1QyU1QyUyMDElMjAlMjYwJTIwJTI2LTElMjAlNUNlbmQlN0JibWF0cml4JTdE?x-oss-process=image/format,png#pic_center)                                        
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?d_%7Bx%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7Bx%7D%28x,%20y%29#pic_center)                                               
                      
 ![在这里插入图片描述](https://private.codecogs.com/gif.latex?d_%7By%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7By%7D%28x,%20y%29#pic_center)                                   
                                              
@@ -144,7 +143,7 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=True)
       
  接下来，我们来计算cell中像素的梯度直方图，将0-180度分成9等份，称为9个bins，分别是0，20，40...160。然后对每个bin中梯度的贡献进行统计：       
                
-![在这里插入图片描述] (https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy1mMDgzNzBkZGVmMmVhYzE1LnBuZw?x-oss-process=image/format,png#pic_center)                          
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy1mMDgzNzBkZGVmMmVhYzE1LnBuZw?x-oss-process=image/format,png#pic_center)                           
           
 统计方法是一种加权投票统计，  如上图所示，某像素的梯度幅值为13.6，方向为36，36度两侧的角度bin分别为20度和40度，那么就按一定加权比例分别在20度和40度对应的bin加上梯度值，加权公式为：                                                                                         
 20度对应的bin：(（40-36）/20) * 13.6，分母的20表示20等份，而不是20度；                      
@@ -153,11 +152,11 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=True)
 
 还有一个细节需要注意，如果某个像素的梯度角度大于160度，也就是在160度到180度之间，那么把这个像素对应的梯度值按比例分给0度和160度对应的bin。如左下图绿色圆圈中的角度为165度，幅值为85，则按照同样的加权方式将85分别加到0度和160度对应的bin中。                                              
                 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613160337781.png?x-oss- process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                    
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613160337781.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                        
                                   
 对整个cell进行投票统计，正是在HOG特征描述子中创建直方图的方式，最终得到由9个数值组成的向量—梯度方向图：      
              
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613161947892.png?x-oss-   process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613161947892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                      
         
 ### 2.4 Block 归一化             
                        
@@ -170,7 +169,7 @@ HOG特征将8×8的一个局部区域作为一个cell，再以2×2个cell作为�
 我们不能从图像中完全消除这个。但是我们可以通过使用16×16个块来对梯度进行归一化来减少这种光照变化。           
                              
 由于每个cell有9个值，一个block（2×2个cell）则有36个值，HOG是通过滑动窗口的方式来得到block的，如下图所示：                          
-![在这里插入图片描述] (https://imgconvert.csdnimg.cn/aHR0cHM6Ly9waWM0LnpoaW1nLmNvbS92Mi0yMzI0MTc3NDIwYzBhNzlkNDhkODQ0YjVlMTI0ZjFmM19iLndlYnA?x-oss-process=image/format,png#pic_center)      
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9waWM0LnpoaW1nLmNvbS92Mi0yMzI0MTc3NDIwYzBhNzlkNDhkODQ0YjVlMTI0ZjFmM19iLndlYnA?x-oss-process=image/format,png#pic_center)       
        
  前面已经说明，归一化的目的是为了降低光照的影响，因为梯度对整体光照非常敏感，比如通过将所有像素值除以2来使图像变暗，那么梯度幅值将减小一半，因此直方图中的值也将减小一半，我们就需要将直方图“归一化”。
      
@@ -229,7 +228,7 @@ if __name__ == '__main__':
               
  结果显示如下：                                     
                                       
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613172008147.jpg?x-oss- process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                      
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613172008147.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                       
         
 ### 可视化：                                   
                           
