@@ -16,7 +16,7 @@
 ### 2.3.1 LBP原理介绍
 &emsp;&emsp;LBP特征用图像的局部领域的联合分布$T$ 来描述图像的纹理特征，如果假设局部邻域中像素个数为$P(P >1)$，那么纹理特征的联合分布$T$ 可以表述成：
 
-$$T=t\left(g_{c}, g_{0}, \ldots, g_{p-1}\right) \quad p=0, \ldots, P-1\tag{3-1}$$
+$$T=t\left(g_{c}, g_{0}, \ldots, g_{p-1}\right) \quad p=0, \ldots, P-1\tag{2-1}$$
 
 &emsp;&emsp;其中， $g_c$ 表示相应局部邻域的中心像素的灰度值， $g_p$ 表示以中心像素圆心,以R为半径的圆上的像素的灰度值。
 
@@ -25,11 +25,11 @@ $$T=t\left(g_{c}, g_{0}, \ldots, g_{p-1}\right) \quad p=0, \ldots, P-1\tag{3-1}$
 $$\begin{aligned}
 T &=t\left(g_{c}, g_{0}-g_{c}, \ldots, g_{p-1}-g_{c}\right) \quad p=0, \ldots, P-1 \\
 & \approx t\left(g_{c}\right) t\left(g_{0}-g_{c}, \ldots, g_{p-1}-g_{c}\right)
-\end{aligned}\tag{3-2}$$
+\end{aligned}\tag{2-2}$$
 
 &emsp;&emsp;其中$t(g_c)$决定了局部区域的整体亮度，对于纹理特征，可以忽略这一项，最终得到：
 
-$$T \approx t\left(g_{0}-g_{c}, \ldots, g_{p-1}-g_{c}\right) \quad p=0, \ldots, P-1\tag{3-3}$$
+$$T \approx t\left(g_{0}-g_{c}, \ldots, g_{p-1}-g_{c}\right) \quad p=0, \ldots, P-1\tag{2-3}$$
 
 &emsp;&emsp;上式说明，将纹理特征定义为邻域像素和中心像素的差的联合分布函数，因为$g_p − g_c$是基本不受亮度均值影响的，所以从上式可以看出，此时统计量T 是一个跟亮度均值，即灰度级无关的值。
 
@@ -40,11 +40,11 @@ s(x)=\left\{\begin{array}{l}
 1, x \geq 0 \\
 0, x<0
 \end{array}\right.
-\end{array}\tag{3-4}$$
+\end{array}\tag{2-4}$$
 
 &emsp;&emsp;定义灰度级不变LBP为：
 
-$$L B P_{P, R}=\sum_{p=0}^{P-1} s\left(g_{p}-g_{c}\right) 2^{p}\tag{3-5}$$
+$$L B P_{P, R}=\sum_{p=0}^{P-1} s\left(g_{p}-g_{c}\right) 2^{p}\tag{2-5}$$
 
 &emsp;&emsp;即二进制编码公式。
 
