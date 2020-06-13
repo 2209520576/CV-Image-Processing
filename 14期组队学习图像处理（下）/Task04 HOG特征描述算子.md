@@ -5,12 +5,12 @@
 
 学习HOG特征的思想也有助于我们很好地了解传统图像特征描述和图像识别方法，本次任务我们将学习到HOG背后的设计原理，和opencv的实现。                    
 
-## 1.2 学习目标
+## 4.2 学习目标
 
  -  理解HOG特征的原理和思想      
  -  使用OpenCV的HOG算法实现行人检测      
 
-## 1.3 内容大纲
+## 4.3 内容大纲
  - HOG特征简介       
  - HOG特征的原理            
       - 图像预处理           
@@ -20,7 +20,7 @@
       - 获得HOG描述子                          
   - 基于OpenCV实现        
                      
-## 1.4 内容介绍              
+## 4.4 内容介绍              
                        
 ### 1. HOG特征简介                     
                      
@@ -36,7 +36,7 @@ HOG+SVM的工作流程如下：
                         
 ### 2.HOG特征的原理                 
                         
-### 2.1 图像预处理                       
+### 图像预处理                       
                               
 预处理包括灰度化和Gamma变换。                          
                
@@ -73,7 +73,7 @@ plt.show()
 ```                    
                        
                       
-## 2.2 计算图像梯度              
+## 计算图像梯度              
        
 为了得到梯度直方图，那么首先需要计算图像水平方向和垂直方向梯度。                    
 一般使用特定的卷积核对图像滤波实现，可选用的卷积模板有：soble算子、Prewitt算子、Roberts模板等等。           
@@ -124,7 +124,7 @@ gy = cv2.Sobel(img, cv2.CV_32F, 0, 1, ksize=1)
 mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=True)
 ```                   
                 
-## 2.3 计算梯度直方图             
+## 计算梯度直方图             
                           
 经过上一步计算，每一个像素点都会有两个值：梯度幅值/梯度方向。             
 
@@ -164,7 +164,7 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=True)
              
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613161947892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                      
         
-### 2.4 Block 归一化             
+### Block 归一化             
                        
 HOG特征将8×8的一个局部区域作为一个cell，再以2×2个cell作为一组，称为一个block，也就是说一个block表示16x16的区域。                               
    
@@ -187,7 +187,7 @@ HOG特征将8×8的一个局部区域作为一个cell，再以2×2个cell作为�
 
 而每一个block将按照上图滑动的方式进行重复计算，直到整个图像的block都计算完成。                
         
- ## 2.5 获得HOG描述子                           
+ ## 获得HOG描述子                           
                                       
  每一个16 * 16大小的block将会得到一个长度为36的特征向量，并进行归一化。 那会得到多少个特征向量呢？       
         
@@ -198,7 +198,7 @@ HOG特征将8×8的一个局部区域作为一个cell，再以2×2个cell作为�
 获得HOG特征向量，就可以用来可视化和分类了。对于多维的HOG特征，SVM就可以排上用场了。                         
                                                   
 
-## 1.5 基于OpenCV的实现              
+## 4.5 基于OpenCV的实现              
                            
 ### 代码                  
 
@@ -262,7 +262,7 @@ cv2.waitKey(0)==ord('q')
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613172738134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center#pic_center)                    
     
                           
-## 1.6 总结                
+## 4.6 总结                
 HOG算法具有以下优点：                            
 
  - HOG描述的是边缘结构特征，可以描述物体的结构信息                
