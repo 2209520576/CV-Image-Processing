@@ -24,7 +24,7 @@
                        
 ### 1. HOG特征简介                     
                      
-![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy0zMjY0ZDdiNTYzZmQ5NDk3LmpwZWc?x-oss-process=image/format,png#pic_center)                   
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy0zMjY0ZDdiNTYzZmQ5NDk3LmpwZWc?x-oss-process=image/format,png)                   
                      
 HOG特征是一种图像局部特征，其基本思路是对图像局部的**梯度幅值和方向**进行投票统计，形成基于梯度特性的直方图，然后将局部特征拼接起来作为总特征。局部特征在这里指的是将图像划分为多个子块（Block), 每个Block内的特征进行联合以形成最终的特征。                                                                
        
@@ -55,7 +55,7 @@ HOG+SVM的工作流程如下：
                               
 2） 当$\gamma>1$时，输入图像的高灰度值区域动态范围变小，进而图像低灰度值区域对比度得以降低；在高灰度值区域，动态范围变大，进而图像高灰度值区域对比度得以增强。  最终，图像整体的灰度变暗。        
                              
-![在这里插入图片描述](https://img-blog.csdn.net/20180325111008645?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYWthZGlhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast#pic_center)           
+![在这里插入图片描述](https://img-blog.csdn.net/20180325111008645?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYWthZGlhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)           
                              
 
 代码：                             
@@ -80,12 +80,13 @@ plt.show()
                                                               
  一般采用soble算子，OpenCV也是如此，利用soble水平和垂直算子与输入图像卷积计算$dx$、$dy$： 
                             
-![在这里插入图片描述](https://private.codecogs.com/gif.latex?Sobel_X%20=%5Cbegin%7Bbmatrix%7D1%20%5C%5C%200%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D*%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5Cend%7Bbmatrix%7D=%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5C%5C%200&%200%20&0%20%5C%5C%20-1&%20-2%20&-1%20%5Cend%7Bbmatrix%7D#pic_center)          
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?Sobel_X%20=%5Cbegin%7Bbmatrix%7D1%20%5C%5C%200%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D*%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5Cend%7Bbmatrix%7D=%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5C%5C%200&%200%20&0%20%5C%5C%20-1&%20-2%20&-1%20%5Cend%7Bbmatrix%7D)    
+                                          
                                  
 ![在这里插入图片描述]  (https://imgconvert.csdnimg.cn/aHR0cHM6Ly9wcml2YXRlLmNvZGVjb2dzLmNvbS9naWYubGF0ZXg_U29iZWxfWSUyMCUzRCU1Q2JlZ2luJTdCYm1hdHJpeCU3RDElMjAlNUMlNUMlMjAyJTIwJTVDJTVDJTIwMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlMjAqJTVDYmVnaW4lN0JibWF0cml4JTdEJTIwMSUyMCUyNiUyMDAlMjAlMjYtMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlM0QlNUNiZWdpbiU3QmJtYXRyaXglN0QlMjAxJTIwJTI2JTIwMCUyMCUyNi0xJTIwJTVDJTVDJTIwMiUyNjAlMjAlMjYtMiUyMCU1QyU1QyUyMDElMjAlMjYwJTIwJTI2LTElMjAlNUNlbmQlN0JibWF0cml4JTdE?x-oss-process=image/format,png#pic_center)                                     
-![在这里插入图片描述](https://private.codecogs.com/gif.latex?   d_%7Bx%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7Bx%7D%28x,%20y%29#pic_center)                 
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?   d_%7Bx%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7Bx%7D%28x,%20y%29#pic_center)                                            
                      
-![在这里插入图片描述](https://private.codecogs.com/gif.latex?d_%7By%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7By%7D%28x,%20y%29#pic_center)           
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?d_%7By%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7By%7D%28x,%20y%29#pic_center)                                   
                                              
  进一步可以得到图像梯度的幅值：                    
                    
