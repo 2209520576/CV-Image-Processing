@@ -62,7 +62,7 @@ $$L B P_{P, R}=\sum_{p=0}^{P-1} s\left(g_{p}-g_{c}\right) 2^{p}\tag{3-5}$$
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.3.1 LBP计算示意图</div>
+    padding: 2px;">图 2.3.1 LBP计算示意图</div>
 </center>
 
 &emsp;
@@ -82,7 +82,7 @@ $$L B P_{P, R}=\sum_{p=0}^{P-1} s\left(g_{p}-g_{c}\right) 2^{p}\tag{3-5}$$
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.3.2 圆形LBP示意图</div>
+    padding: 2px;">图 2.3.2 圆形LBP示意图</div>
 </center>
 
 &emsp;
@@ -114,7 +114,7 @@ $$L B P_{P R}^{ri}=\min \left(R O R\left(L B P_{P, R}^{ri}, i\right) | i=0,1, \l
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.3.3 求取旋转不变的LPB特征示意图
+    padding: 2px;">图 2.3.3 求取旋转不变的LPB特征示意图
 </div>
 </center>
 
@@ -138,7 +138,7 @@ $$U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\ri
 
 &emsp;&emsp;**混合模式**：除了等价模式之外的称为混合模式。
 
-&emsp;&emsp;改进后的LPB模式数由2 $^{p}$(p为邻域集内的采集点数 ) 降维为$p*(p-1)+2$ 。维数减少，可以降低高频噪声的影响。Ojala认为等价模式占总模式中的绝大数。图3.4 ( a ), ( b ), ( c )等价模式分别占88\%，93\%和76\%。
+&emsp;&emsp;改进后的LPB模式数由2 $^{p}$(p为邻域集内的采集点数 ) 降维为$p*(p-1)+2$ 。维数减少，可以降低高频噪声的影响。Ojala认为等价模式占总模式中的绝大数。图2.4 ( a ), ( b ), ( c )等价模式分别占88\%，93\%和76\%。
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -148,7 +148,7 @@ $$U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\ri
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.3.4
+    padding: 2px;">图 2.3.4
 </div>
 </center>
 
@@ -157,7 +157,7 @@ $$U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\ri
 
 
 
-&emsp;&emsp;可以通过低通滤波的方法来增强等价模式所占的比例。图3.4( c )经过高斯滤波后，其等价模式所占比可以增加到90%。
+&emsp;&emsp;可以通过低通滤波的方法来增强等价模式所占的比例。图2.4( c )经过高斯滤波后，其等价模式所占比可以增加到90%。
 
 ### 2.3.4 人脸检测流程
 
@@ -172,7 +172,7 @@ $$U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\ri
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.3.5 人脸检测流程图
+    padding: 2px;">图 2.3.5 人脸检测流程图
 </div>
 </center>
 
@@ -629,7 +629,7 @@ void UniformRotInvLBPFeature(const Mat &srcImage, Size cellSize, Mat &featureVec
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.4.1 原图
+    padding: 2px;">图 2.4.1 原图
 </div>
 </center>
 
@@ -644,7 +644,7 @@ void UniformRotInvLBPFeature(const Mat &srcImage, Size cellSize, Mat &featureVec
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.4.2 灰度不变常规LBP
+    padding: 2px;">图 2.4.2 灰度不变常规LBP
 </div>
 </center>
 
@@ -659,7 +659,7 @@ void UniformRotInvLBPFeature(const Mat &srcImage, Size cellSize, Mat &featureVec
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.4.3 等价灰度不变LBP
+    padding: 2px;">图 2.4.3 等价灰度不变LBP
 </div>
 </center>
 
@@ -674,7 +674,7 @@ void UniformRotInvLBPFeature(const Mat &srcImage, Size cellSize, Mat &featureVec
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图 3.4.4 等价旋转不变LBP
+    padding: 2px;">图 2.4.4 等价旋转不变LBP
 </div>
 </center>
 
