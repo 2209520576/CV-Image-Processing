@@ -92,7 +92,7 @@ $$L B P_{P, R}=\sum_{p=0}^{P-1} s\left(g_{p}-g_{c}\right) 2^{p}\tag{2-5}$$
 $$\begin{array}{l}
 x_{p}=x_{c}+\operatorname{Rcos}\left(\frac{2 \pi p}{P}\right) \\
 y_{p}=y_{c}+\operatorname{Rsin}\left(\frac{2 \pi p}{P}\right)
-\end{array}\tag{3-6}$$
+\end{array}\tag{2-6}$$
 
 &emsp;&emsp;R是采样半径，p是第p个采样点，P是采样数目。如果近邻点不在整数位置上，就需要进行插值运算，可以参考这篇博客 [OpenCV框架下的插值算法](https://blog.csdn.net/weixin_39940512/article/details/105343418)
 
@@ -101,7 +101,7 @@ y_{p}=y_{c}+\operatorname{Rsin}\left(\frac{2 \pi p}{P}\right)
 
 **&emsp;&emsp;实现方法：不断旋转圆形邻域得到一系列初始定义的LPB值，取最小值作为该邻域的值。**
 
-$$L B P_{P R}^{ri}=\min \left(R O R\left(L B P_{P, R}^{ri}, i\right) | i=0,1, \ldots, P-1\right)\tag{3-7}$$
+$$L B P_{P R}^{ri}=\min \left(R O R\left(L B P_{P, R}^{ri}, i\right) | i=0,1, \ldots, P-1\right)\tag{2-7}$$
 
 &emsp;&emsp;其中$L B P_{P R}^{ri}$表示具有旋转不变性的LBP特征。$ROR(x, i)$为旋转函数，表示将$x$右循环$i$位。
 
@@ -131,7 +131,7 @@ $$L B P_{P R}^{ri}=\min \left(R O R\left(L B P_{P, R}^{ri}, i\right) | i=0,1, \l
 &emsp;&emsp;**比如：00000000，11111111，11110010，10111111都是等价模式。**
 
 &emsp;&emsp;检查某种模式是否是等价模式：
-$$U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\right)\right|+\sum_{p=1}^{P_{-1}}\left|s\left(g_{p}-g_{c}\right)-s\left(g_{P-1}-g_{c}\right)\right|\tag{3-8}$$
+$$U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\right)\right|+\sum_{p=1}^{P_{-1}}\left|s\left(g_{p}-g_{c}\right)-s\left(g_{P-1}-g_{c}\right)\right|\tag{2-8}$$
 
 &emsp;&emsp;将其和其移动一位后的二进制模式按位相减。并绝对值求和。若U$\left(G_{p}\right)$ 小于等于2，则为等价模式。
 
