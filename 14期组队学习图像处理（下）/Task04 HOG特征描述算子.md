@@ -24,7 +24,7 @@
                        
 ### 1. HOG特征简介                     
                      
-![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy0zMjY0ZDdiNTYzZmQ5NDk3LmpwZWc?x-oss-process=image/format,png#pic_center)                  
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy0zMjY0ZDdiNTYzZmQ5NDk3LmpwZWc?x-oss-process=image/format,png#pic_center)                   
                      
 HOG特征是一种图像局部特征，其基本思路是对图像局部的**梯度幅值和方向**进行投票统计，形成基于梯度特性的直方图，然后将局部特征拼接起来作为总特征。局部特征在这里指的是将图像划分为多个子块（Block), 每个Block内的特征进行联合以形成最终的特征。                                                                
        
@@ -80,26 +80,26 @@ plt.show()
                                                               
  一般采用soble算子，OpenCV也是如此，利用soble水平和垂直算子与输入图像卷积计算$dx$、$dy$： 
                             
- ![在这里插入图片描述](https://private.codecogs.com/gif.latex?Sobel_X%20=%5Cbegin%7Bbmatrix%7D1%20%5C%5C%200%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D*%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5Cend%7Bbmatrix%7D=%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5C%5C%200&%200%20&0%20%5C%5C%20-1&%20-2%20&-1%20%5Cend%7Bbmatrix%7D#pic_center)          
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?Sobel_X%20=%5Cbegin%7Bbmatrix%7D1%20%5C%5C%200%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D*%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5Cend%7Bbmatrix%7D=%5Cbegin%7Bbmatrix%7D%201%20&%202%20&1%20%5C%5C%200&%200%20&0%20%5C%5C%20-1&%20-2%20&-1%20%5Cend%7Bbmatrix%7D#pic_center)          
                                  
- ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9wcml2YXRlLmNvZGVjb2dzLmNvbS9naWYubGF0ZXg_U29iZWxfWSUyMCUzRCU1Q2JlZ2luJTdCYm1hdHJpeCU3RDElMjAlNUMlNUMlMjAyJTIwJTVDJTVDJTIwMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlMjAqJTVDYmVnaW4lN0JibWF0cml4JTdEJTIwMSUyMCUyNiUyMDAlMjAlMjYtMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlM0QlNUNiZWdpbiU3QmJtYXRyaXglN0QlMjAxJTIwJTI2JTIwMCUyMCUyNi0xJTIwJTVDJTVDJTIwMiUyNjAlMjAlMjYtMiUyMCU1QyU1QyUyMDElMjAlMjYwJTIwJTI2LTElMjAlNUNlbmQlN0JibWF0cml4JTdE?x-oss-process=image/format,png#pic_center)                          
-  ![在这里插入图片描述](https://private.codecogs.com/gif.latex?d_%7Bx%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7Bx%7D%28x,%20y%29#pic_center)                 
+![在这里插入图片描述]  (https://imgconvert.csdnimg.cn/aHR0cHM6Ly9wcml2YXRlLmNvZGVjb2dzLmNvbS9naWYubGF0ZXg_U29iZWxfWSUyMCUzRCU1Q2JlZ2luJTdCYm1hdHJpeCU3RDElMjAlNUMlNUMlMjAyJTIwJTVDJTVDJTIwMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlMjAqJTVDYmVnaW4lN0JibWF0cml4JTdEJTIwMSUyMCUyNiUyMDAlMjAlMjYtMSUyMCU1Q2VuZCU3QmJtYXRyaXglN0QlM0QlNUNiZWdpbiU3QmJtYXRyaXglN0QlMjAxJTIwJTI2JTIwMCUyMCUyNi0xJTIwJTVDJTVDJTIwMiUyNjAlMjAlMjYtMiUyMCU1QyU1QyUyMDElMjAlMjYwJTIwJTI2LTElMjAlNUNlbmQlN0JibWF0cml4JTdE?x-oss-process=image/format,png#pic_center)                                     
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?   d_%7Bx%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7Bx%7D%28x,%20y%29#pic_center)                 
                      
- ![在这里插入图片描述](https://private.codecogs.com/gif.latex?d_%7By%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7By%7D%28x,%20y%29#pic_center)           
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?d_%7By%7D=f%28x,%20y%29%5E%7B*%7D%20Sobel_%7By%7D%28x,%20y%29#pic_center)           
                                              
  进一步可以得到图像梯度的幅值：                    
                    
- ![在这里插入图片描述](https://private.codecogs.com/gif.latex?M%28x,%20y%29=%5Csqrt%7Bd_%7Bx%7D%5E%7B2%7D%28x,%20y%29&plus;d_%7By%7D%5E%7B2%7D%28x,%20y%29%7D#pic_center)                         
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?M%28x,%20y%29=%5Csqrt%7Bd_%7Bx%7D%5E%7B2%7D%28x,%20y%29&plus;d_%7By%7D%5E%7B2%7D%28x,%20y%29%7D#pic_center)                         
  为了简化计算，幅值也可以作如下近似：                   
                                
- ![在这里插入图片描述](https://private.codecogs.com/gif.latex?M%28x,%20y%29=%7Cd_%7Bx%7D%28x,%20y%29%7C&plus;%7Cd_%7By%7D%28x,%20y%29%7C#pic_center)                         
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?M%28x,%20y%29=%7Cd_%7Bx%7D%28x,%20y%29%7C&plus;%7Cd_%7By%7D%28x,%20y%29%7C#pic_center)                         
 角度为：            
-                 
-![在这里插入图片描述](https://private.codecogs.com/gif.latex?%5Ctheta_%7BM%7D=%5Carctan%20%5Cleft%28d_%7By%7D%20/%20d_%7Bx%7D%5Cright%29#pic_center)      
+
+![在这里插入图片描述](https://private.codecogs.com/gif.latex?%5Ctheta_%7BM%7D=%5Carctan%20%5Cleft%28d_%7By%7D%20/%20d_%7Bx%7D%5Cright%29#pic_center)                 
            
 这里需要注意的是：梯度方向和图像边缘方向是互相正交的。                    
           
-![在这里插入图片描述](https://img-blog.csdn.net/20160511100108955#pic_center)             
+![在这里插入图片描述](https://img-blog.csdn.net/20160511100108955#pic_center)              
                                             
 代码：            
                       
@@ -141,8 +141,9 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=True)
       
 右图是 8×8 的cell中表示梯度的原始数值，注意角度的范围介于0到180度之间，而不是0到360度， 这被称为“无符号”梯度，因为两个完全相反的方向被认为是相同的。                                  
       
- 接下来，我们来计算cell中像素的梯度直方图，将0-180度分成9等份，称为9个bins，分别是0，20，40...160。然后对每个bin中梯度的贡献进行统计：                                    
-![在这里插入图片描述] (https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy1mMDgzNzBkZGVmMmVhYzE1LnBuZw?x-oss-process=image/format,png#pic_center)                      
+ 接下来，我们来计算cell中像素的梯度直方图，将0-180度分成9等份，称为9个bins，分别是0，20，40...160。然后对每个bin中梯度的贡献进行统计：       
+               
+![在这里插入图片描述] (https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy1mMDgzNzBkZGVmMmVhYzE1LnBuZw?x-oss-process=image/format,png#pic_center)                          
           
 统计方法是一种加权投票统计，  如上图所示，某像素的梯度幅值为13.6，方向为36，36度两侧的角度bin分别为20度和40度，那么就按一定加权比例分别在20度和40度对应的bin加上梯度值，加权公式为：                                                                                         
 20度对应的bin：(（40-36）/20) * 13.6，分母的20表示20等份，而不是20度；                      
@@ -155,7 +156,7 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=True)
                                   
 对整个cell进行投票统计，正是在HOG特征描述子中创建直方图的方式，最终得到由9个数值组成的向量—梯度方向图：      
              
-   ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613161947892.png?x-oss-   process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613161947892.png?x-oss-   process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70#pic_center)                 
         
 ### 2.4 Block 归一化             
                        
