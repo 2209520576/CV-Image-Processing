@@ -230,7 +230,7 @@ cv.destroyAllWindows()
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200613193815961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70) 
         
 检测结果：      
-     
+                
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061319380857.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDY0NzgxOQ==,size_1,color_FFFFFF,t_70)     
                 
     
