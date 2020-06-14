@@ -487,9 +487,9 @@ detectMultiScale(image[,scaleFactor[,minNeighbors[,flags[,minSize[,maxSize]]]]])
 
 
 ## 相关技术文档、论文推荐
-*      [主要参考：人脸检测之Haar分类器](https://www.cnblogs.com/zyly/p/9410563.html)
-*      [集成学习值Adaboost算法原理和代码小结](https://www.cnblogs.com/zyly/p/9416263.html)
-*      [官方教学——使用Haar特征进行人脸检测](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_objdetect/py_face_detection/py_face_detection.html?highlight=detectmultiscale)
+*       [主要参考：人脸检测之Haar分类器](https://www.cnblogs.com/zyly/p/9410563.html)
+*       [集成学习值Adaboost算法原理和代码小结](https://www.cnblogs.com/zyly/p/9416263.html)
+*       [官方教学——使用Haar特征进行人脸检测](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_objdetect/py_face_detection/py_face_detection.html?highlight=detectmultiscale)
 ---
 **Task03 Haar特征描述算子-人脸检测.**
 
